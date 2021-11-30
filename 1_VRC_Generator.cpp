@@ -1,26 +1,26 @@
 /**
- * 
- * todo: OBJECTIVE = To generate VRC for given char 
- * 
+ *
+ * todo: OBJECTIVE = To generate VRC for given char
+ *
  * ! changes and addons to do in program:
- * todo: 
- * 
- * ! 
- * 
- * ! Program to 
- * 
+ * todo:
+ *
+ * !
+ *
+ * ! Program to
+ *
  * ? initialization dt. 23/08/2021
  * ? last updated on dt. 23/08/2021
- * 
+ *
  * ? this program is made by SUDHANWA KAVEESHWAR....
- * 
- * ! **************** PROBLEMS ****************** 
- * ! 
- * 
+ *
+ * ! **************** PROBLEMS ******************
+ * !
+ *
  * * *************** OTHERS *******************
- * * 
- * 
-*/
+ * *
+ *
+ */
 
 #include <bits/stdc++.h>
 #include <iostream>
@@ -58,7 +58,9 @@ int main()
     cin >> c;
 
     string s = DecimalToBinary(int(c));
+
     int count = 0;
+
     for (int i = 0; i < s.length(); i++)
     {
         if (s[i] == '1')
