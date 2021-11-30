@@ -1,46 +1,141 @@
-#include <iostream>
+// C program to determine class, Network
+// and Host ID of an IPv4 address
+#include <stdio.h>
 #include <string.h>
-#include <math.h>
-using namespace std;
 
-int bin_to_dec(string add)
+// Function to find out the Class
+char findClass(char str[])
 {
-    int num = 0;
-    int base = 0;
-    int i = add.length() - 1;
+    // storing first octet in arr[] variable
+    char arr[4];
+    int i = 0;
+    while (str[i] != '.')
+    {
+        arr[i] = str[i];
+        i++;
+    }
+    i--;
+
+    // converting str[] variable into number for
+    // comparison
+    int ip = 0, j = 1;
     while (i >= 0)
     {
-        if (add[i] == '1')
-            num = num + pow(2, base);
-        base++;
+        ip = ip + (str[i] - '0') * j;
+        j = j * 10;
         i--;
     }
-    return num;
+
+    // Class A
+    if (ip >= 1 && ip <= 126)
+        return 'A';
+
+    // Class B
+    else if (ip >= 128 && ip <= 191)
+        return 'B';
+
+    // Class C
+    else if (ip >= 192 && ip <= 223)
+        return 'C';
+
+    // Class D
+    else if (ip >= 224 && ip <= 239)
+        return 'D';
+
+    // Class E
+    else
+        return 'E';
 }
+
+// Function to separate Network ID as well as
+// Host ID and print them
+void separate(char str[], char ipClass)
+{
+    // Initializing network and host array to NULL
+    char network[12], host[12];
+    for (int k = 0; k < 12; k++)
+        network[k] = host[k] = '\0';
+
+    // for class A, only first octet is Network ID
+    // and rest are Host ID
+    if (ipClass == 'A')
+    {
+        int i = 0, j = 0;
+        while (str[j] != '.')
+            network[i++] = str[j++];
+        i = 0;
+        j++;
+        while (str[j] != '\0')
+            host[i++] = str[j++];
+        printf("Network ID is %s\n", network);
+        printf("Host ID is %s\n", host);
+    }
+
+    // for class B, first two octet are Network ID
+    // and rest are Host ID
+    else if (ipClass == 'B')
+    {
+        int i = 0, j = 0, dotCount = 0;
+
+        // storing in network[] up to 2nd dot
+        // dotCount keeps track of number of
+        // dots or octets passed
+        while (dotCount < 2)
+        {
+            network[i++] = str[j++];
+            if (str[j] == '.')
+                dotCount++;
+        }
+        i = 0;
+        j++;
+
+        while (str[j] != '\0')
+            host[i++] = str[j++];
+
+        printf("Network ID is %s\n", network);
+        printf("Host ID is %s\n", host);
+    }
+
+    // for class C, first three octet are Network ID
+    // and rest are Host ID
+    else if (ipClass == 'C')
+    {
+        int i = 0, j = 0, dotCount = 0;
+
+        // storing in network[] up to 3rd dot
+        // dotCount keeps track of number of
+        // dots or octets passed
+        while (dotCount < 3)
+        {
+            network[i++] = str[j++];
+            if (str[j] == '.')
+                dotCount++;
+        }
+
+        i = 0;
+        j++;
+
+        while (str[j] != '\0')
+            host[i++] = str[j++];
+
+        printf("Network ID is %s\n", network);
+        printf("Host ID is %s\n", host);
+    }
+
+    // Class D and E are not divided in Network
+    // and Host ID
+    else
+        printf("In this Class, IP address is not"
+               " divided into Network and Host ID\n");
+}
+
+// Driver function is to test above function
 int main()
 {
-    string first, second, third, fourth;
-    cout << "Enter the IP Address in Dotted Decimal Notation\nEnter the Binary for first octet:";
-    getline(cin >> ws, first);
-    cout << "\nEnter the Binary for second octet:";
-    getline(cin >> ws, second);
-    cout << "\nEnter the Binary for third octet:";
-    getline(cin >> ws, third);
-    cout << "\nEnter the Binary for fourth octet:";
-    getline(cin >> ws, fourth);
-
-    if (first.length() == 8 && second.length() == 8 && third.length() == 8 && fourth.length() == 8)
-    {
-        int f = bin_to_dec(first);
-        int s = bin_to_dec(second);
-        int t = bin_to_dec(third);
-        int fth = bin_to_dec(fourth);
-
-        cout << "\nDecimal address is :\n"
-             << f << "." << s << "." << t << "." << fth << "\n";
-    }
-    else
-    {
-        cout << "Invalid Address\n";
-    }
+    char str[] = "192.226.12.11";
+    char ipClass = findClass(str);
+    printf("Given IP address belongs to Class %c\n",
+           ipClass);
+    separate(str, ipClass);
     return 0;
+}
