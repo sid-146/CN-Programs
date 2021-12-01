@@ -3,7 +3,8 @@
     "*.tcc": "cpp",
     "iomanip": "cpp",
     "istream": "cpp",
-    "iostream": "cpp"
+    "iostream": "cpp",
+    "bitset": "cpp"
   },
   "C_Cpp.errorSquiggles": "Disabled"
 }

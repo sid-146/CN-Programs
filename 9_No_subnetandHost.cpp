@@ -42,11 +42,11 @@ string DottedDecimalToBinary(long int Decimal)
         i++;
     }
 
-    reverse(Temp, Temp + 8);
+    Reverse(Temp, Temp + 8);
 
     for (int i = 0; i < 8; i++)
     {
-        s += to_string(Temp[i]);
+        s += std::to_string(Temp[i]);
     }
 
     return s;
