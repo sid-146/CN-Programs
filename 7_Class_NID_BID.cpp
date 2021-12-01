@@ -1,26 +1,26 @@
 /**
- * 
- * todo: OBJECTIVE = 
- * 
+ *
+ * todo: OBJECTIVE =
+ *
  * ! changes and addons to do in program:
- * todo: 
- * 
- * ! 
- * 
- * ! Program to 
- * 
- * ? initialization dt. 
- * ? last updated on dt. 
- * 
+ * todo:
+ *
+ * !
+ *
+ * ! Program to
+ *
+ * ? initialization dt.
+ * ? last updated on dt.
+ *
  * ? this program is made by SUDHANWA KAVEESHWAR....
- * 
- * ! **************** PROBLEMS ****************** 
- * ! 
- * 
+ *
+ * ! **************** PROBLEMS ******************
+ * !
+ *
  * * *************** OTHERS *******************
- * * 
- * 
-*/
+ * *
+ *
+ */
 
 #include <bits/stdc++.h>
 #include <iostream>
@@ -160,6 +160,8 @@ int main()
     // getline(cin, DecimalIP);
 
     char DecimalIP[] = "19.226.12.11";
+
+    cout << "Enter Decimal IP: " << DecimalIP << endl;
 
     char IPClass = ClassFind(DecimalIP);
 
